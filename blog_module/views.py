@@ -29,7 +29,7 @@ class BlogPageView(ListView):
 class PostDetailView(DetailView):
     template_name = 'blog_module/single-post.html'
     model = Post
-
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         loaded_post = self.object
