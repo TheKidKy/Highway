@@ -5,7 +5,6 @@
     </div>
     <ul>
         {% for post in posts %}
-
         <li class="recents-li"><a href="{{ post.get_absolute_url }}">
             {% thumbnail post.image "300x250" crop="center" as im %}
                 <img src="{{ im.url }}" alt="Recent Post 1" class="recents-img">
@@ -15,7 +14,6 @@
                 <span>{{ post.release_date }}</span>
             </div>
         </li></a>
-
         {% endfor %}
     </ul>
 </div>
