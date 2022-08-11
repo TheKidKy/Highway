@@ -1,0 +1,10 @@
+<div class="categories">
+    <div class="sidebar-heding">
+        <h2>Categories</h2>
+    </div>
+    <ul>
+        {% for category in categories %}
+            <li><a href="#">{{ category.title }} {{ category.post_count }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

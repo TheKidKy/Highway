@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load render_partial %}
+	{% block title %} Register {% endblock title %}
+
+	{% block header_references %}
+	<!--===============================================================================================-->	
+	<link rel="icon" href="{% static 'home_module/img/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'account_module/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'account_module/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'account_module/vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'account_module/vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'account_module/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'account_module/vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'account_module/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'account_module/css/main.css' %}">
+<!--===============================================================================================-->
+	{% endblock header_references %}
+
+	{% block content %}
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form p-l-55 p-r-55 p-t-178" method="post" action="{% url 'register-page' %}">
+					{% csrf_token %}
+					<span class="login100-form-title">
+						Sign Up
+					</span>
+
+					<div class="wrap-input100 validate-input m-b-16">
+						{{ register_form.username }}		
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="input-error">
+						{{ register_form.username.errors }}
+					</div>
+
+                    <div class="wrap-input100 validate-input m-b-16">
+						{{ register_form.email }}	
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="input-error">
+						{{ register_form.email.errors }}
+					</div>
+
+                    <div class="wrap-input100 validate-input m-b-16">
+						{{ register_form.password }}
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="input-error">
+						{{ register_form.password.errors }}
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						{{ register_form.confirm_password }}
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="input-error">
+						{{ register_form.confirm_password.errors }}
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit">
+							Sign up
+						</button>
+					</div>
+					<div class="flex-col-c p-t-20">
+							Already have an account?
+						<a href="{% url 'login-page' %}" class="txt3">
+							Sign in
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+{% endblock content %}
+
+{% block footer_references %}
+<!--===============================================================================================-->
+
+<!--===============================================================================================-->
+	
+<!--===============================================================================================-->
+
+<!--===============================================================================================-->
+
+{% endblock footer_references %}

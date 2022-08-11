@@ -1,0 +1,36 @@
+{% load render_partial %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% include 'shared/references/header_references.html' %}
+
+    {% block header_references %}
+      
+    {% endblock header_references %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+      
+    {% endblock title %}</title>
+</head>
+<body>
+
+    {% render_partial 'home_module.views.header_component' %}
+
+    {% render_partial 'home_module.views.menu_component' %}
+
+    {% block content %}
+      
+    {% endblock content %}
+
+    {% render_partial 'home_module.views.footer_component' %}
+
+    {% include 'shared/references/footer_references.html' %}
+
+    {% block footer_references %}{% endblock footer_references %}
+
+</body>
+</html>

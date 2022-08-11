@@ -1,0 +1,43 @@
+{% load static %}
+<section class="overlay-menu">
+    <div class="container">
+      <div class="row">
+        <div class="main-menu">
+            <ul>
+                <li>
+                    <a href="{% url 'home-page' %}">Home</a>
+                </li>
+
+                <li>
+                  <a href="{% url 'blog-page' %}">Blog</a>
+                </li>
+
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="">Account</a>
+                    </li>
+                {% else %}
+                  <li>
+                    <a href="{% url 'login-page' %}">Login</a>
+                  </li>
+                {% endif %}
+
+                <li>
+                    <a href="{% url 'about-page' %}">About Us</a>
+                </li>
+
+                <li>
+                    <a href="{% url 'contact-us' %}">Contact us</a>
+                </li>
+            </ul>
+            <p>Find your ideal wallpaper here!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+        <!-- Modal button -->
+    <div class="popup-icon">
+        <a href="{% url 'contact-us' %}"><button class="modal-btn"><img src="{% static 'img/contact-icon.png' %}" alt=""></button></a>
+    </div>  

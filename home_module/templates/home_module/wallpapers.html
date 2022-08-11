@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %} Wallpapers {% endblock title %}
+
+
+{% block content %}
+    
+<div id="video-container">
+    <div class="video-overlay"></div>
+    <div class="video-content">
+        <div class="inner">
+          <h1>Welcome to <em>Highway</em></h1>
+          <p>Free Wallpapers</p>
+          <p>Huge gallery with a really nice variety</p>
+            <div class="scroll-icon">
+                <a class="scrollTo" data-scrollTo="portfolio" href="#"><img src="{% static 'home_module/img/scroll-icon.png' %}" alt=""></a>
+            </div>    
+        </div>
+    </div>
+    <video autoplay="" loop="" muted>
+        <source src="{% static 'home_module/highway-loop.mp4' %}" type="video/mp4" />
+    </video>
+</div>
+
+<div class="grid-portfolio" id="portfolio">
+    <div class="container">
+        <div class="row">
+
+            {% for item in wallpapers %}
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="portfolio-item">
+                    <div class="thumb">
+                        <a href="{{ item.image.url }}" data-lightbox="image-1"><div class="hover-effect">
+                            <div class="hover-content">
+                                <h1>{{ item.title }}</h1>
+                                {% if item.sub_title %}
+                                <p>{{ item.sub_title }}</p>
+                                {% else %}
+                                <p>....</p>
+                                {% endif %}
+                                
+                                {% comment %} <div class="div-icon">
+                                    <a href="{{ item.image.url }}" download="{{ item }}" class="icon"><i class="fa fa-download"></i></a>
+                                </div> {% endcomment %}
+                            </div>
+                        </div></a>
+                        <div class="image">
+                            {% thumbnail item.image "900x1200" crop="center" as im %}
+                                <img src="{{ im.url }}">
+                            {% endthumbnail %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {% endfor %}
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="load-more-button">
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">Load more</a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
