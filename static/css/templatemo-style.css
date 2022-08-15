@@ -1389,3 +1389,15 @@ h3 {
 .div-icon {
   padding-left: 300px;
 }
+
+.a-back {
+  color: white;
+  text-decoration: none;
+}
+
+.a-back:hover {
+  cursor: pointer;
+  text-decoration: none;
+  color: #f4dd5b;
+  transition: all 0.5s;
+}
