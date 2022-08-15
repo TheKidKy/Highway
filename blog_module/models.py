@@ -41,7 +41,7 @@ class Post(models.Model):
     title = models.CharField(max_length=30)
     description = models.TextField()
     image = models.ImageField(upload_to='images', null=True, blank=True)
-    category = models.ManyToManyField(PostCategory, related_name='post_categories', verbose_name='categories')
+    category = models.ForeignKey(PostCategory, on_delete=models.CASCADE, verbose_name='categories', null=True, blank=True)
     tag = models.ManyToManyField(PostTag, verbose_name='Post tags')
     release_date = models.DateField(null=True)
     author = models.CharField(max_length=30)

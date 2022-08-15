@@ -58,9 +58,8 @@ def recent_posts_component(request):
 
 
 def post_categories_component(request):
-    categories = PostCategory.objects.filter(is_active=True)
-    post_count = Post.objects.filter(is_active=True).count()
-    return render(request, 'blog_module/components/post_categories.html', {'categories': categories, 'post_count': post_count})
+    post_categories = PostCategory.objects.annotate(posts_count=Count('post')).filter(is_active=True)
+    return render(request, 'blog_module/components/post_categories.html', {'categories': post_categories,})
 
 
 
