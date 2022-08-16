@@ -44,6 +44,20 @@ class PostDetailView(DetailView):
             
         context['visit_count'] = PostVisit.objects.filter(post_id=loaded_post.id).count()
         return context
+
+class PostsByCategoryView(ListView):
+    template_name = 'blog_module/posts_by_category.html'
+    model = Post
+    context_object_name = 'posts'
+    paginate_by: int = 3
+    ordering = ['-release_date']
+
+    def get_queryset(self):
+        query =  super(PostsByCategoryView, self).get_queryset()
+        category_name = self.kwargs.get('category')
+        if category_name is not None:
+            query = query.filter(categoty__url_title__iexact=category_name)
+        return query
     
 
 # ---- COMPONENTS ----
