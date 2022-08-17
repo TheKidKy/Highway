@@ -4,7 +4,7 @@
     </div>
     <ul>
         {% for category in categories %}
-            <li><a href="{% url 'posts-by-cat' %}">{{ category.title }} ({{ category.posts_count }})</a></li>
+            <li><a href="{% url 'posts-by-cat' category=category.url_title %}">{{ category.title }} ({{ category.posts_count }})</a></li>
         {% endfor %}
     </ul>
 </div>

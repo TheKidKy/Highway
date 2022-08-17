@@ -15,14 +15,15 @@ class BlogPageView(ListView):
     paginate_by = 3
     ordering = ['-release_date']
 
-    #todo: Filter posts by release date
-    def get_queryset(self):
-        query = super(BlogPageView, self).get_queryset()
-        release_date = self.kwargs.get('release_date')
-        
-        if release_date is not None:
-            query = query.filter(releade_date__iexact=release_date)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
+    def get_queryset(self):
+        query =  super(BlogPageView, self).get_queryset()
+        category_name = self.kwargs.get('category')
+        if category_name is not None:
+            query = query.filter(category__url_title__iexact=category_name)
         return query
 
         
@@ -45,20 +46,6 @@ class PostDetailView(DetailView):
         context['visit_count'] = PostVisit.objects.filter(post_id=loaded_post.id).count()
         return context
 
-class PostsByCategoryView(ListView):
-    template_name = 'blog_module/posts_by_category.html'
-    model = Post
-    context_object_name = 'posts'
-    paginate_by: int = 3
-    ordering = ['-release_date']
-
-    def get_queryset(self):
-        query =  super(PostsByCategoryView, self).get_queryset()
-        category_name = self.kwargs.get('category')
-        if category_name is not None:
-            query = query.filter(categoty__url_title__iexact=category_name)
-        return query
-    
 
 # ---- COMPONENTS ----
 def posts_archive_component(request):
