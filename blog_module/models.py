@@ -75,3 +75,17 @@ class PostVisit(models.Model):
     class Meta:
         verbose_name = 'Post visit'
         verbose_name_plural = 'Post visits'
+
+
+class PostComment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    create_date = models.DateField(auto_now_add=True, verbose_name='Date')
+    comment = models.TextField()
+
+    def __str__(self):
+        return str(self.user)
+
+    class Meta:
+        verbose_name = 'Comment'
+        verbose_name_plural = 'Comments'

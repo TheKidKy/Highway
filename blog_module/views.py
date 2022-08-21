@@ -4,6 +4,8 @@ from django.views.generic import DetailView
 from django.views.generic import ListView
 from .models import Post, PostCategory, PostVisit
 from utils.http_service import get_client_ip
+from django.http import HttpRequest
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -45,6 +47,12 @@ class PostDetailView(DetailView):
             
         context['visit_count'] = PostVisit.objects.filter(post_id=loaded_post.id).count()
         return context
+
+
+@login_required
+def PostAddComment(request: HttpRequest):
+    post_id = request.GET.get('post_id')
+    post_comment = request.GET.get('comment')
 
 
 # ---- COMPONENTS ----
