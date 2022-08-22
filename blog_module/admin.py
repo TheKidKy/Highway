@@ -3,7 +3,7 @@ from django.contrib import admin
 from contact_module.models import Contact
 from home_module.models import Wallpaper
 from account_module.models import User
-from blog_module.models import PostTag, PostVisit, PostCategory
+from blog_module.models import PostTag, PostVisit, PostCategory, PostComment
 from . import models
 
 # Register your models here.
@@ -25,3 +25,4 @@ admin.site.register(User)
 admin.site.register(PostTag)
 admin.site.register(PostVisit)
 admin.site.register(PostCategory)
+admin.site.register(PostComment)

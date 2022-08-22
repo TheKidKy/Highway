@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.db.models import Count
 from django.views.generic import DetailView
 from django.views.generic import ListView
-from .models import Post, PostCategory, PostVisit
+from .models import Post, PostCategory, PostComment, PostVisit
 from utils.http_service import get_client_ip
 from django.http import HttpRequest
 from django.contrib.auth.decorators import login_required
@@ -39,20 +39,22 @@ class PostDetailView(DetailView):
         user_ip = get_client_ip(self.request)
         if self.request.user.is_authenticated:
             user_id = self.request.user.id
-
         has_been_visited = PostVisit.objects.filter(ip__iexact=user_ip, post_id=loaded_post.id).exists()
         if not has_been_visited:
             new_visit = PostVisit(ip=user_ip, user_id=user_id, post_id=loaded_post.id)
             new_visit.save()
-            
         context['visit_count'] = PostVisit.objects.filter(post_id=loaded_post.id).count()
+
+        post: Post = kwargs.get('object')
+        context['comments'] = PostComment.objects.filter(id=post.id)
+        context['comments_count'] = PostComment.objects.filter(id=post.id).count()
+
         return context
 
 
 @login_required
 def PostAddComment(request: HttpRequest):
-    post_id = request.GET.get('post_id')
-    post_comment = request.GET.get('comment')
+    pass
 
 
 # ---- COMPONENTS ----
