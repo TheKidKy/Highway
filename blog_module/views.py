@@ -18,11 +18,13 @@ class BlogPageView(ListView):
     ordering = ['-release_date']
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(BlogPageView, self).get_context_data(**kwargs)
+        post = self.kwargs.get('object')
+        context['visit_count'] = PostVisit.objects.filter(post=post).count()
         return context
 
     def get_queryset(self):
-        query =  super(BlogPageView, self).get_queryset()
+        query = super(BlogPageView, self).get_queryset()
         category_name = self.kwargs.get('category')
         if category_name is not None:
             query = query.filter(category__url_title__iexact=category_name)
@@ -52,17 +54,13 @@ class PostDetailView(DetailView):
         return context
 
 
-@login_required
-def PostAddComment(request: HttpRequest):
-    pass
-
-
 # ---- COMPONENTS ----
 def posts_archive_component(request):
     posts = Post.objects.filter(release_date='2022-07-13')
     return render(request, 'blog_module/components/posts_archive_component.html', {'posts': posts})
 
 
+# Filtering the three latest posts.
 def recent_posts_component(request):
     posts = Post.objects.filter(is_active=True).order_by('-release_date')[0:3]
     return render(request, 'blog_module/components/recent_posts_component.html', {'posts': posts})
@@ -73,6 +71,14 @@ def post_categories_component(request):
     return render(request, 'blog_module/components/post_categories.html', {'categories': post_categories,})
 
 
+@login_required
+def post_comments(request: HttpRequest):
+    post = Post.objects.all()
+    context = {
+        'comments': PostComment.objects.filter(id=post.id)
+    }
+    return render(request, 'blog_module/includes/post_comments_partial.html', context)
+
 
 def tag(request, tag):
     # This page shows all posts with the related tag
@@ -80,10 +86,11 @@ def tag(request, tag):
      return render(request, 'blog/tag.html', {'tag': tag, 'posts': posts})
 
 
+# todo: building a search box to search and explore posts
 def search(request):        
     if request.method == 'GET': # this will be GET now      
-        post_name =  request.GET('search') # do some research what it does
+        post_name = request.GET('search') # do some research what it does
         status = Post.objects.filter(title__icontains=post_name)
-        return render(request,"blog_module/blog.html",{"related_posts":status})
+        return render(request, "blog_module/blog.html", {"related_posts":status})
     else:
-        return render(request,"blog_module/blog.html",{})
+        return render(request, "blog_module/blog.html")

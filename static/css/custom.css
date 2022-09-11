@@ -1,0 +1,15 @@
+.post-comment {
+    border: 1px solid aliceblue;
+    border-radius: 10px;
+    min-height: 70px;
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.comments {
+    padding-top: 120px;
+}
+
+#cm {
+    color: white;
+}

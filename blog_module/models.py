@@ -59,7 +59,7 @@ class Post(models.Model):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
-    class Meta: # Meta class is used to change the module verbose name.
+    class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
 
