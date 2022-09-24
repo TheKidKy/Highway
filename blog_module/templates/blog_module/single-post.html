@@ -36,7 +36,7 @@ https://templatemo.com/tm-520-highway
                             {% endthumbnail %}
                             <div class="text-content">
                                 <h2>{{ post.title }}</h2>
-                                <span><a href="">{{ post.author }}</a> / <a href="#">{{ post.release_date }}</a> / <a href="#"><i class="fa-solid fa-eye"></i> {{ visit_count }}</a></span>
+                                <span><a href="">{{ post.author }}</a> / <a href="#">{{ post.release_date }}</a> / <a href="#"><i class="fa-solid fa-eye"></i> {{ visit_count }} </a></span>
                                 <p> {{ post.description }}
                                 <br><br>.
                                     
@@ -61,20 +61,20 @@ https://templatemo.com/tm-520-highway
                                             </ul>
                                         </div>
 
-{#                                        {% render_partial 'blog_module.views.post_comments' %}#}
+                                       {% comment %}{% render_partial 'blog_module.views.post_comments' %} {% endcomment %}
 
                                     </div>
                                 </div>
-                            <div class="comments">
-                                {% for comment in comments %}
-                                    <div class="div-comment">
-                                        <li class="post-comment">
-                                            <p id="cm-user">{{ comment.user }}  /  {{ comment.create_date }}</p>
-                                            <p id="cm">{{ comment.comment }}</p>
-                                        </li>
-                                    </div>
-                                {% endfor %}
-                            </div>
+                                <div class="comments">
+                                    {% for cm in comments %}
+                                        <div class="div-comment">
+                                            <li class="post-comment">
+                                            <p id="cm-user">{{ cm.user }}  /  {{ cm.create_date }}</p>
+                                            <p id="cm">{{ cm.comment }}</p>
+                                            </li>
+                                        </div>
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>
