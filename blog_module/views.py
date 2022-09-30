@@ -109,4 +109,4 @@ def search(request):
     else:
         return render(request, "blog_module/blog.html")
 
-# test
+# test.
