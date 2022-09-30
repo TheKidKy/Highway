@@ -15,12 +15,12 @@ class BlogPageView(ListView):
     model = Post
     template_name = 'blog_module/blog.html'
     context_object_name = 'posts'
+    queryset = Post.objects.annotate(views=Count('postvisit')).filter(is_active=True)
     paginate_by = 3
     ordering = ['-release_date']
 
     def get_context_data(self, **kwargs):
-        context = super(BlogPageView, self).get_context_data(**kwargs)
-        context['visit_count'] = Post.objects.annotate(posts_visit=Count('postvisit'))
+        context = super(BlogPageView, self).get_context_data()
         return context
 
     def get_queryset(self):
