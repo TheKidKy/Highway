@@ -108,5 +108,3 @@ def search(request):
         return render(request, "blog_module/blog.html", {"related_posts": status})
     else:
         return render(request, "blog_module/blog.html")
-
-# test.
