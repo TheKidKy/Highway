@@ -28,10 +28,11 @@ class BlogPageView(ListView):
 
     def get_queryset(self):
         query = super(BlogPageView, self).get_queryset()
+        request: HttpRequest = self.request
         category_name = self.kwargs.get('category')
         archives = self.kwargs.get('release_date')
-        request: HttpRequest = self.request
         post_name = request.GET.get('search')
+        tag_name = self.kwargs.get('tag')
 
         if category_name is not None:
             query = query.filter(category__url_title__iexact=category_name)
@@ -42,7 +43,8 @@ class BlogPageView(ListView):
         if post_name is not None:
             query = query.filter(title__icontains=post_name)
 
-
+        if tag_name is not None:
+            query = query.filter(tag__url_title=tag_name)
 
         return query
 
@@ -107,10 +109,6 @@ def add_post_comment(request: HttpRequest, id):
             new_comment = PostComment(text=text, user_id=request.user.id, post_id=id)
             new_comment.save()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-def tag(request, tag):
-    # This page shows all posts with the related tag
-    posts = Post.objects.filter(tag=tag)
-    return render(request, 'blog_module/tag.html', {'tag': tag, 'posts': posts})
 
 
 # todo: building a search box to search and explore posts

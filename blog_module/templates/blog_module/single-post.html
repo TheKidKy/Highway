@@ -48,7 +48,7 @@ https://templatemo.com/tm-520-highway
                                             <ul class="tags">
                                                 <li>Tags:</li>
                                                 {% for tag in post.tag.all %}
-                                                    <li><a href="">{{ tag.title }}</a>,</li>
+                                                    <li><a href="{% url 'post-by-tag' tag=tag.url_title %}">{{ tag.title }}</a>,</li>
                                                 {% endfor %}
                                             </ul>
                                         </div>

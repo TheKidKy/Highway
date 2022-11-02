@@ -29,6 +29,7 @@ class PostCategory(models.Model):
 
 class PostTag(models.Model):
     title = models.CharField(max_length=20, db_index=True)
+    url_title = models.CharField(max_length=20, db_index=True, null=True)
 
     class Meta:
         verbose_name = 'Tag'

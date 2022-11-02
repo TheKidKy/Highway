@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8c3ac152-bc72-43b6-a139-003d84d4ab9f" name="Changes" comment="Commit Message">
-      <change afterPath="$PROJECT_DIR$/static/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/HighWay.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HighWay.iml" afterDir="false" />
+    <list default="true" id="8c3ac152-bc72-43b6-a139-003d84d4ab9f" name="Changes" comment="Comment system has been updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account_module/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account_module/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog_module/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog_module/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog_module/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog_module/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog_module/templates/blog_module/blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog_module/templates/blog_module/blog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog_module/templates/blog_module/includes/post_comments_partial.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog_module/templates/blog_module/includes/post_comments_partial.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog_module/templates/blog_module/single-post.html" beforeDir="false" afterPath="$PROJECT_DIR$/blog_module/templates/blog_module/single-post.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog_module/templates/blog_module/tag.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/blog_module/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog_module/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog_module/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog_module/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/shared/components/menu_component.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shared/components/menu_component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/shared/references/footer_references.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shared/references/footer_references.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,6 +151,7 @@
       <workItem from="1666928005472" duration="18000" />
       <workItem from="1667053039942" duration="815000" />
       <workItem from="1667306804096" duration="647000" />
+      <workItem from="1667403532021" duration="1989000" />
     </task>
     <task id="LOCAL-00001" summary="new update">
       <created>1662884164094</created>
@@ -237,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664525118005</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Comment system has been updated">
+      <created>1667403762768</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1667403762768</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,7 +289,8 @@
     <MESSAGE value="new update" />
     <MESSAGE value="-Posts views counts have been updated.&#10;-New queryset has been added." />
     <MESSAGE value="Commit Message" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit Message" />
+    <MESSAGE value="Comment system has been updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Comment system has been updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
