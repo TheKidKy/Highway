@@ -1,10 +1,9 @@
 from django import forms
 from .models import PostComment
+from django.core import validators
 
-class CommentForm(forms.ModelForm):
-    model = PostComment
-    field = '__all__'
-    widgets = {
-        'Name': forms.TextInput(attrs={}),
-        'Comment': forms.Textarea(attrs={})
-    }
+class CommentForm(forms.Form):
+    text = forms.CharField(
+        label='Add your comment',
+        widget=forms.Textarea(attrs={'class': 'comment_input', 'id': 'commentText', 'placeholder': 'Add your comment'})
+    )

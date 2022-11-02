@@ -81,7 +81,7 @@ class PostComment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     create_date = models.DateField(auto_now_add=True, verbose_name='Date')
-    comment = models.TextField()
+    text = models.TextField()
 
     def __str__(self):
         return str(self.user)

@@ -49,6 +49,8 @@ class RegisterPageView(View):
                 register_form.add_error('user_name', 'There is already a user with this information!')
             elif len(user_pass) < 8:
                 register_form.add_error('password', 'Your password is too short!')
+            elif User.objects.filter(email__iexact=user_email).exists():
+                register_form.add_error('email', 'There is already an account with this information!')
             else:
                 new_user = User(
                     email=user_email,

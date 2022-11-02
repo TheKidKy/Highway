@@ -60,12 +60,31 @@ https://templatemo.com/tm-520-highway
                                                 <li><a href="#">behance</a></li>
                                             </ul>
                                         </div>
-
-                                       {% comment %}{% render_partial 'blog_module.views.post_comments' %} {% endcomment %}
-
                                     </div>
                                 </div>
-                                <div class="comments">
+
+                               <div class="comments">
+                                    {% for cm in comments %}
+                                        <div class="div-comment">
+                                            <li class="post-comment">
+                                            <p id="cm-user">{{ cm.user }}  /  {{ cm.create_date }}</p>
+                                            <p id="cm">{{ cm.text }}</p>
+                                            </li>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                            <div class="comment_form">
+
+                                <form method="post" action="{% url 'add-post-comment' post.id %}" id="commentForm">
+                                    {% csrf_token %}
+                                    {{ comment_form.text }}
+                                    <button type="submit">Send</button>
+                                </form>
+
+                            </div>
+
+                               {% comment %} <div class="comments">
                                     {% for cm in comments %}
                                         <div class="div-comment">
                                             <li class="post-comment">
@@ -75,6 +94,7 @@ https://templatemo.com/tm-520-highway
                                         </div>
                                     {% endfor %}
                                 </div>
+                                {% endcomment %}
                             </div>
                         </div>
                     </div>

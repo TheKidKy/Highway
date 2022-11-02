@@ -1,9 +1,10 @@
-<ul class="comments">
-    
-    {% for comment in comments %}
-        <li>
-            <p>{{ comment.comment }}</p>
-        </li>
+<div class="comments">
+    {% for cm in comments %}
+        <div class="div-comment">
+            <li class="post-comment">
+                <p id="cm-user">{{ cm.user }}  /  {{ cm.create_date }}</p>
+                <p id="cm">{{ cm.comment }}</p>
+            </li>
+        </div>
     {% endfor %}
-        
-</ul>
+</div>

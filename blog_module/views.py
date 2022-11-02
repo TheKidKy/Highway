@@ -1,10 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Count, Q
 from django.views.generic import DetailView
 from django.views.generic import ListView
+from django.views.generic.edit import FormMixin
+from django.urls import reverse
+from .forms import CommentForm
 from .models import Post, PostCategory, PostComment, PostVisit
 from utils.http_service import get_client_ip
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 
 
@@ -27,12 +30,19 @@ class BlogPageView(ListView):
         query = super(BlogPageView, self).get_queryset()
         category_name = self.kwargs.get('category')
         archives = self.kwargs.get('release_date')
+        request: HttpRequest = self.request
+        post_name = request.GET.get('search')
 
         if category_name is not None:
             query = query.filter(category__url_title__iexact=category_name)
 
         if archives is not None:
             query = query.filter(release_date__iexact=archives)
+
+        if post_name is not None:
+            query = query.filter(title__icontains=post_name)
+
+
 
         return query
 
@@ -47,7 +57,8 @@ class PostDetailView(DetailView):
         return query
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        request = self.request
         loaded_post = self.object
         user_id = None
         user_ip = get_client_ip(self.request)
@@ -62,6 +73,8 @@ class PostDetailView(DetailView):
         context['visit_count'] = PostVisit.objects.filter(post_id=loaded_post.id).count()
 
         post: Post = kwargs.get('object')
+
+        context['comment_form'] = CommentForm()
         context['comments'] = PostComment.objects.filter(post_id=post.id).order_by('-create_date')
         context['comments_count'] = PostComment.objects.filter(id=post.id).count()
 
@@ -86,14 +99,14 @@ def post_categories_component(request):
 
 
 @login_required
-def post_comments(request: HttpRequest):
-    post = Post.objects.all()
-    context = {
-        'comments': PostComment.objects.filter(id=post.id)
-    }
-    return render(request, 'blog_module/includes/post_comments_partial.html', context)
-
-
+def add_post_comment(request: HttpRequest, id):
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            text = comment_form.cleaned_data.get('text')
+            new_comment = PostComment(text=text, user_id=request.user.id, post_id=id)
+            new_comment.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 def tag(request, tag):
     # This page shows all posts with the related tag
     posts = Post.objects.filter(tag=tag)

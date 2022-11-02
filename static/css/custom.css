@@ -14,6 +14,28 @@
     color: white;
 }
 
+#commentText {
+    width: 400px;
+}
+
 .div-comment {
  padding-bottom: 50px;
+}
+
+#div-name {
+    padding-bottom: 30px;
+}
+
+.user_name {
+    width: 320px;
+    height: 30px;
+}
+
+.comment_input {
+    width: 400px;
+}
+
+.comment_form {
+
+    padding-top: 20%;
 }
